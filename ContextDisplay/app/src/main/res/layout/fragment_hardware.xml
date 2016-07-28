@@ -1,0 +1,179 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".fragments.PlaceholderFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0%"
+        android:id="@+id/labelBatteryLevel"
+        android:layout_below="@+id/labelBattery"
+        android:layout_alignLeft="@+id/labelBattery"
+        android:layout_alignStart="@+id/labelBattery" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Battery"
+        android:id="@+id/labelBattery"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:id="@+id/labelLightLevel"
+        android:layout_below="@+id/labelLight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Light"
+        android:id="@+id/labelLight"
+        android:layout_below="@id/labelBatteryLevel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No GPS signal"
+        android:id="@+id/labelIndoorsLevel"
+        android:layout_below="@+id/labelindoors" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Indoor/Outdoors"
+        android:id="@+id/labelindoors"
+        android:layout_below="@id/labelLightLevel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Compass"
+        android:id="@+id/labelCompass"
+        android:layout_below="@+id/labelIndoorsLevel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0º"
+        android:id="@+id/labelCompassDegrees"
+        android:layout_below="@+id/labelCompass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="External Storage"
+        android:id="@+id/labelExternalStorage"
+        android:layout_below="@+id/labelCompassDegrees"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0 MB"
+        android:id="@+id/labelExternalStorageSize"
+        android:layout_below="@+id/labelExternalStorage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Plugged In"
+        android:id="@+id/labelPluggedIn"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/labelindoors"
+        android:layout_toEndOf="@+id/labelindoors"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="-"
+        android:id="@+id/labelPluggedInStatus"
+        android:layout_below="@+id/labelPluggedIn"
+        android:layout_alignLeft="@+id/labelPluggedIn"
+        android:layout_alignStart="@+id/labelPluggedIn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Step Count"
+        android:id="@+id/labelStepCount"
+        android:layout_below="@+id/labelExternalStorageSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0 Steps"
+        android:id="@+id/labelStepCountNumber"
+        android:layout_below="@+id/labelStepCount"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Telephony Status"
+        android:id="@+id/labelTelephonyStatus"
+        android:layout_below="@+id/labelStepCountNumber"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="-"
+        android:id="@+id/labelTelephonyStatusValue"
+        android:layout_below="@+id/labelTelephonyStatus"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Wifi Status"
+        android:id="@+id/labelWifiStatus"
+        android:layout_below="@+id/labelTelephonyStatusValue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="-"
+        android:id="@+id/labelWifiStatusValue"
+        android:layout_below="@+id/labelWifiStatus"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+
+</RelativeLayout>

@@ -95,15 +95,22 @@ public class PlaceholderFragment extends Fragment {
         final TextView stepCounterText = (TextView) rootView.findViewById(R.id.labelStepCountNumber);
         final TextView telephonyText = (TextView) rootView.findViewById(R.id.labelTelephonyStatusValue);
         final TextView wifiText = (TextView) rootView.findViewById(R.id.labelWifiStatusValue);
+        final TextView indoorText = (TextView) rootView.findViewById(R.id.labelIndoorsLevel);
 
-        mHardwareManager = new HardwareManager(mContext,batteryLevelText, lightLevelText, compassDegreeText, externalStorageText,
-               pluggedInText, stepCounterText, telephonyText, wifiText);
+        mHardwareManager = new HardwareManager(mContext, getActivity(), batteryLevelText, lightLevelText, compassDegreeText, externalStorageText,
+                pluggedInText, stepCounterText, telephonyText, wifiText, indoorText);
+    }
+
+    public void onResume() {
+        super.onResume();
         mHardwareManager.startContexts();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(mHardwareManager != null) mHardwareManager.stopContexts();
+    public void onPause() {
+        super.onPause();
+        if (mHardwareManager != null) {
+            mHardwareManager.stopContexts();
+        }
     }
+
 }

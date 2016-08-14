@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.casetools.contextdisplay.R;
+import org.casetools.contextdisplay.managers.EnvironmentManager;
 import org.casetools.contextdisplay.managers.HardwareManager;
+import org.casetools.contextdisplay.managers.PersonalManager;
 
 public class PlaceholderFragment extends Fragment {
     /**
@@ -20,6 +22,8 @@ public class PlaceholderFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static Context mContext;
     private static HardwareManager mHardwareManager;
+    private static EnvironmentManager mEnvironmentManager;
+    private static PersonalManager mPersonalManager;
 
     public PlaceholderFragment(){
 
@@ -60,18 +64,23 @@ public class PlaceholderFragment extends Fragment {
         return rootView;
     }
 
+    @NonNull
     private View onCreatePersonalView(LayoutInflater inflater, ViewGroup container) {
         View rootView;
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_personal, container, false);
+
+        initPersonalManager(rootView);
+
         return rootView;
     }
 
     @NonNull
     private View onCreateEnvironmentView(LayoutInflater inflater, ViewGroup container) {
         View rootView;
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+        rootView = inflater.inflate(R.layout.fragment_environment, container, false);
+
+        initEnvironmentManager(rootView);
+
         return rootView;
     }
 
@@ -80,11 +89,12 @@ public class PlaceholderFragment extends Fragment {
         View rootView;
         rootView = inflater.inflate(R.layout.fragment_hardware, container, false);
 
-    //    if(mHardwareManager != null)
-            initHardwareManager(rootView);
+        initHardwareManager(rootView);
 
         return rootView;
     }
+
+
 
     private void initHardwareManager(View rootView) {
         final TextView batteryLevelText = (TextView) rootView.findViewById(R.id.labelBatteryLevel);
@@ -101,15 +111,42 @@ public class PlaceholderFragment extends Fragment {
                 pluggedInText, stepCounterText, telephonyText, wifiText, indoorText);
     }
 
+    private void initEnvironmentManager(View rootView) {
+        final TextView locationWeatherText = (TextView) rootView.findViewById(R.id.labelWeatherValue);
+
+        mEnvironmentManager = new EnvironmentManager(mContext, getActivity(), locationWeatherText);
+    }
+
+    private void initPersonalManager(View rootView) {
+        final TextView userMoodText = (TextView) rootView.findViewById(R.id.labelUserMoodValue);
+        final TextView heartRateText = (TextView) rootView.findViewById(R.id.labelHeartRateValue);
+
+        mPersonalManager = new PersonalManager(mContext, getActivity(), userMoodText, heartRateText);
+    }
+
     public void onResume() {
         super.onResume();
-        mHardwareManager.startContexts();
+        if(mHardwareManager!=null) {
+            mHardwareManager.startContexts();
+        }
+        if(mPersonalManager!=null) {
+            mPersonalManager.startContexts();
+        }
+        if(mEnvironmentManager!=null) {
+            mEnvironmentManager.startContexts();
+        }
     }
 
     public void onPause() {
         super.onPause();
-        if (mHardwareManager != null) {
+        if(mHardwareManager!=null){
             mHardwareManager.stopContexts();
+        }
+        if(mPersonalManager!=null){
+            mPersonalManager.stopContexts();
+        }
+        if(mEnvironmentManager!=null){
+            mEnvironmentManager.stopContexts();
         }
     }
 

@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import project1.contextattribute2.ContextAttribute2Context;
 import uk.ac.mdx.cs.ie.acontextlib.IContextReceiver;
 import uk.ac.mdx.cs.ie.acontextlib.hardware.BatteryContext;
 import uk.ac.mdx.cs.ie.acontextlib.hardware.CompassContext;
@@ -75,19 +74,6 @@ public class PersonalManager implements IContextReceiver {
     @Override
     public void newContextValue(final String name, long value) {
 
-        final String strValue = String.valueOf(value);
-
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (name.equals(LightContext.RECEIVER_LIGHT)) {
-                    mHeartRateText.setText(strValue);
-                } else if (name.equals(BatteryContext.RECEIVER_BATTERY)) {
-                    mUserMoodText.setText(strValue + "%");
-                }
-            }
-        });
-
     }
 
     @Override
@@ -105,6 +91,14 @@ public class PersonalManager implements IContextReceiver {
     @Override
     public void newContextValue(final String name, final String value) {
 
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (name.equals(UserMoodContext.RECEIVER_MOOD)) {
+                    mUserMoodText.setText(value);
+                }
+            }
+        });
 
     }
 

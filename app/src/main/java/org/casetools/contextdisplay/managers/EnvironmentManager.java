@@ -2,13 +2,10 @@ package org.casetools.contextdisplay.managers;
 
 import android.app.Activity;
 import android.content.Context;
-import android.location.Location;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.Map;
 
-import project1.contextattribute2.ContextAttribute2Context;
 import uk.ac.mdx.cs.ie.acontextlib.IContextReceiver;
 import uk.ac.mdx.cs.ie.acontextlib.envir.LocationWeatherContext;
 

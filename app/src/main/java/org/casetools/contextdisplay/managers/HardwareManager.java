@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import project1.contextattribute2.ContextAttribute2Context;
 import uk.ac.mdx.cs.ie.acontextlib.IContextReceiver;
 import uk.ac.mdx.cs.ie.acontextlib.hardware.BatteryContext;
 import uk.ac.mdx.cs.ie.acontextlib.hardware.CompassContext;

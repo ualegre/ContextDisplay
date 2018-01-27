@@ -8,15 +8,15 @@ import android.widget.TextView;
 import java.util.Map;
 
 import uk.ac.mdx.cs.ie.acontextlib.IContextReceiver;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.BatteryContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.CompassContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.ExternalStorageSpaceContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.GPSIndoorOutdoorContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.LightContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.PluggedInContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.StepCounter;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.TelephonyContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.WifiContext;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.BatteryObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.CompassObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.ExternalStorageSpaceObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.GPSIndoorOutdoorObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.LightObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.PluggedInObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.StepCounterObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.TelephonyObserver;
+import uk.ac.mdx.cs.ie.acontextlib.hardware.WifiObserver;
 
 /**
  * Created by Unai on 27/07/2016.
@@ -26,15 +26,15 @@ public class HardwareManager implements IContextReceiver {
     private Context mContext;
     private Activity mActivity;
 
-    private BatteryContext mBatteryContext;
-    private LightContext mLightContext;
-    private CompassContext mCompassContext;
-    private ExternalStorageSpaceContext mExternalStorageContext;
-    private PluggedInContext mPluggedInContext;
-    private StepCounter mStepCounterContext;
-    private TelephonyContext mTelephonyContext;
-    private WifiContext mWifiContext;
-    private GPSIndoorOutdoorContext mIndoorsContext;
+    private BatteryObserver mBatteryContext;
+    private LightObserver mLightContext;
+    private CompassObserver mCompassContext;
+    private ExternalStorageSpaceObserver mExternalStorageContext;
+    private PluggedInObserver mPluggedInContext;
+    private StepCounterObserver mStepCounterContext;
+    private TelephonyObserver mTelephonyContext;
+    private WifiObserver mWifiContext;
+    private GPSIndoorOutdoorObserver mIndoorsContext;
 
     private TextView mBatteryLevelText;
     private TextView mLightLevelText;
@@ -103,49 +103,49 @@ public class HardwareManager implements IContextReceiver {
     }
 
     private void createWifiContext() {
-        mWifiContext = new WifiContext(mContext);
+        mWifiContext = new WifiObserver(mContext);
         mWifiContext.addContextReceiver(this);
     }
 
     private void createTelephonyContext() {
-        mTelephonyContext = new TelephonyContext(mContext);
+        mTelephonyContext = new TelephonyObserver(mContext);
         mTelephonyContext.addContextReceiver(this);
     }
 
     private void createStepCounterContext() {
-        mStepCounterContext = new StepCounter(mContext);
+        mStepCounterContext = new StepCounterObserver(mContext);
         mStepCounterContext.addContextReceiver(this);
     }
 
     private void createPluggedInContext() {
-        mPluggedInContext = new PluggedInContext(mContext);
+        mPluggedInContext = new PluggedInObserver(mContext);
         mPluggedInContext.addContextReceiver(this);
     }
 
     private void createExternalStorageContext() {
-        mExternalStorageContext = new ExternalStorageSpaceContext(mContext);
+        mExternalStorageContext = new ExternalStorageSpaceObserver(mContext);
         mExternalStorageContext.addContextReceiver(this);
 
     }
 
     private void createCompassContext() {
-        mCompassContext = new CompassContext(mContext);
+        mCompassContext = new CompassObserver(mContext);
         mCompassContext.addContextReceiver(this);
 
     }
 
     private void createLightContext() {
-        mLightContext = new LightContext(mContext);
+        mLightContext = new LightObserver(mContext);
         mLightContext.addContextReceiver(this);
     }
 
     private void createBatteryContext() {
-        mBatteryContext = new BatteryContext(mContext);
+        mBatteryContext = new BatteryObserver(mContext);
         mBatteryContext.addContextReceiver(this);
     }
 
     private void createIndoorsContext() {
-        mIndoorsContext = new GPSIndoorOutdoorContext(mContext);
+        mIndoorsContext = new GPSIndoorOutdoorObserver(mContext);
         mIndoorsContext.addContextReceiver(this);
     }
 
@@ -158,15 +158,15 @@ public class HardwareManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(StepCounter.RECEIVER_STEPS)) {
+                if (name.equals(StepCounterObserver.RECEIVER_STEPS)) {
                     mStepCounterText.setText(strValue + " Steps in 20 seconds");
-                } else if (name.equals(ExternalStorageSpaceContext.RECEIVER_EXTERNSTORAGESPACE)) {
+                } else if (name.equals(ExternalStorageSpaceObserver.RECEIVER_EXTERNSTORAGESPACE)) {
                     mExternalStorageText.setText(strValue + "MB remaining");
-                } else if (name.equals(CompassContext.RECEIVER_COMPASS)) {
+                } else if (name.equals(CompassObserver.RECEIVER_COMPASS)) {
                     mCompassDegreeText.setText(strValue + "º");
-                } else if (name.equals(LightContext.RECEIVER_LIGHT)) {
+                } else if (name.equals(LightObserver.RECEIVER_LIGHT)) {
                     mLightLevelText.setText(strValue);
-                } else if (name.equals(BatteryContext.RECEIVER_BATTERY)) {
+                } else if (name.equals(BatteryObserver.RECEIVER_BATTERY)) {
                     mBatteryLevelText.setText(strValue + "%");
                 }
             }
@@ -185,13 +185,13 @@ public class HardwareManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(PluggedInContext.RECEIVER_PLUGGEDIN)) {
+                if (name.equals(PluggedInObserver.RECEIVER_PLUGGEDIN)) {
                     if (value) {
                         mPluggedInText.setText("Plugged in");
                     } else {
                         mPluggedInText.setText("Not Plugged in");
                     }
-                } else if (name.equals(GPSIndoorOutdoorContext.RECEIVER_INDOOR_OUTDOOR)) {
+                } else if (name.equals(GPSIndoorOutdoorObserver.RECEIVER_INDOOR_OUTDOOR)) {
                     if (value) {
                         mIndoorsText.setText("Indoors");
                     } else {
@@ -209,9 +209,9 @@ public class HardwareManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(WifiContext.RECEIVER_WIFISTATE)) {
+                if (name.equals(WifiObserver.RECEIVER_WIFISTATE)) {
                     mWifiText.setText(value);
-                } else if (name.equals(TelephonyContext.RECEIVER_TELEPHONY_CONSTATE)) {
+                } else if (name.equals(TelephonyObserver.RECEIVER_TELEPHONY_CONSTATE)) {
                     mTelephoneText.setText(value);
                 }
             }

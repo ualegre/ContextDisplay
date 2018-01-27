@@ -8,17 +8,8 @@ import android.widget.TextView;
 import java.util.Map;
 
 import uk.ac.mdx.cs.ie.acontextlib.IContextReceiver;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.BatteryContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.CompassContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.ExternalStorageSpaceContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.GPSIndoorOutdoorContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.LightContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.PluggedInContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.StepCounter;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.TelephonyContext;
-import uk.ac.mdx.cs.ie.acontextlib.hardware.WifiContext;
-import uk.ac.mdx.cs.ie.acontextlib.personal.HeartRateMonitor;
-import uk.ac.mdx.cs.ie.acontextlib.personal.UserMoodContext;
+import uk.ac.mdx.cs.ie.acontextlib.personal.HeartRateObserver;
+import uk.ac.mdx.cs.ie.acontextlib.personal.UserMoodObserver;
 
 /**
  * Created by Unai on 27/07/2016.
@@ -28,8 +19,8 @@ public class PersonalManager implements IContextReceiver {
     private Context mContext;
     private Activity mActivity;
 
-    private UserMoodContext mUserMoodContext;
-    private HeartRateMonitor mHeartRateContext;
+    private UserMoodObserver mUserMoodContext;
+    private HeartRateObserver mHeartRateContext;
 
     private TextView mUserMoodText;
     private TextView mHeartRateText;
@@ -59,12 +50,12 @@ public class PersonalManager implements IContextReceiver {
     }
 
     private void createUserMoodContext() {
-        mUserMoodContext = new UserMoodContext(mContext);
+        mUserMoodContext = new UserMoodObserver(mContext);
         mUserMoodContext.addContextReceiver(this);
     }
 
     private void createHeartRateContext() {
-        mHeartRateContext = new HeartRateMonitor(mContext);
+        mHeartRateContext = new HeartRateObserver(mContext);
         mHeartRateContext.addContextReceiver(this);
     }
 
@@ -94,7 +85,7 @@ public class PersonalManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(UserMoodContext.RECEIVER_MOOD)) {
+                if (name.equals(UserMoodObserver.RECEIVER_MOOD)) {
                     mUserMoodText.setText(value);
                 }
             }

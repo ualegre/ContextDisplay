@@ -7,7 +7,7 @@ import android.widget.TextView;
 import java.util.Map;
 
 import uk.ac.mdx.cs.ie.acontextlib.IContextReceiver;
-import uk.ac.mdx.cs.ie.acontextlib.envir.LocationWeatherContext;
+import uk.ac.mdx.cs.ie.acontextlib.envir.LocationWeatherObserver;
 
 /**
  * Created by Unai on 27/07/2016.
@@ -17,18 +17,18 @@ public class EnvironmentManager implements IContextReceiver {
     private Context mContext;
     private Activity mActivity;
 
-//    private LocationWeatherContext mLocationWeatherContext;
+  //  private LocationWeatherObserver mLocationWeatherContext;
 
     private TextView mWeatherContextText;
 
 
 
     public void startContexts() {
-      //  mLocationWeatherContext.start();
+     //  mLocationWeatherContext.start();
     }
 
     public void stopContexts() {
-      //  mLocationWeatherContext.stop();
+     //  mLocationWeatherContext.stop();
     }
 
     public EnvironmentManager(Context context, Activity activity, final TextView weatherContextText) {
@@ -37,12 +37,12 @@ public class EnvironmentManager implements IContextReceiver {
 
         mWeatherContextText = weatherContextText;
 
-//        createWeatherContext();
+       createWeatherContext();
 
     }
 
     private void createWeatherContext() {
-      //  mLocationWeatherContext = new LocationWeatherContext(mContext);
+      //  mLocationWeatherContext = new LocationWeatherObserver(mContext);
       //  mLocationWeatherContext.addContextReceiver(this);
     }
 
@@ -55,7 +55,7 @@ public class EnvironmentManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(LocationWeatherContext.RECEIVER_WEATHER)) {
+                if (name.equals(LocationWeatherObserver.RECEIVER_WEATHER)) {
                     mWeatherContextText.setText(strValue);
                 }
             }
@@ -71,7 +71,7 @@ public class EnvironmentManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(LocationWeatherContext.RECEIVER_WEATHER)) {
+                if (name.equals(LocationWeatherObserver.RECEIVER_WEATHER)) {
                     mWeatherContextText.setText(strValue);
                 }
             }
@@ -87,7 +87,7 @@ public class EnvironmentManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(LocationWeatherContext.RECEIVER_WEATHER)) {
+                if (name.equals(LocationWeatherObserver.RECEIVER_WEATHER)) {
                     mWeatherContextText.setText(strValue);
                 }
             }
@@ -101,7 +101,7 @@ public class EnvironmentManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(LocationWeatherContext.RECEIVER_WEATHER)) {
+                if (name.equals(LocationWeatherObserver.RECEIVER_WEATHER)) {
                     mWeatherContextText.setText(strValue);
                 }
             }
@@ -115,7 +115,7 @@ public class EnvironmentManager implements IContextReceiver {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (name.equals(LocationWeatherContext.RECEIVER_WEATHER)) {
+                if (name.equals(LocationWeatherObserver.RECEIVER_WEATHER)) {
                     mWeatherContextText.setText(strValue);
                 }
             }
